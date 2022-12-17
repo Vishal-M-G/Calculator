@@ -4,8 +4,24 @@ import CloseIcon from "@mui/icons-material/Close";
 import RemoveIcon from "@mui/icons-material/Remove";
 import BackspaceIcon from "@mui/icons-material/Backspace";
 import ArrowRightIcon from "@mui/icons-material/ArrowRight";
-import Tooltip from "@mui/material/Tooltip";
 import Block from "./Block";
+
+import { styled } from "@mui/material/styles";
+import Tooltip, { TooltipProps, tooltipClasses } from "@mui/material/Tooltip";
+
+const MyTooltip = styled(({ className, ...props }: TooltipProps) => (
+  <Tooltip {...props} arrow classes={{ popper: className }} />
+))(({ theme }) => ({
+  [`& .${tooltipClasses.arrow}`]: {
+    color: theme.palette.common.white,
+  },
+  [`& .${tooltipClasses.tooltip}`]: {
+    padding: 5,
+    color: theme.palette.common.black,
+    backgroundColor: theme.palette.common.white,
+    fontSize: 18,
+  },
+}));
 
 const App = () => {
   let [exp, setExp] = useState("");
@@ -41,20 +57,20 @@ const App = () => {
           />
         </div>
         <div className="btnContainer">
-          <Tooltip title="Clear all Memory" arrow disableInteractive>
+          <MyTooltip title="Clear all Memory" arrow disableInteractive>
             <button className="special" onClick={() => modifyMemory([])}>
               MC
             </button>
-          </Tooltip>
-          <Tooltip title="Recall Memory" arrow disableInteractive>
+          </MyTooltip>
+          <MyTooltip title="Recall Memory" arrow disableInteractive>
             <button
               className="special"
               onClick={() => (memory.length > 0 ? setExp(memory[0]) : null)}
             >
               MR
             </button>
-          </Tooltip>
-          <Tooltip title="Memory Add" arrow disableInteractive>
+          </MyTooltip>
+          <MyTooltip title="Memory Add" arrow disableInteractive>
             <button
               className="special"
               onClick={() => {
@@ -75,8 +91,8 @@ const App = () => {
             >
               M+
             </button>
-          </Tooltip>
-          <Tooltip title="Memory Substract" arrow disableInteractive>
+          </MyTooltip>
+          <MyTooltip title="Memory Substract" arrow disableInteractive>
             <button
               className="special"
               onClick={() => {
@@ -97,8 +113,8 @@ const App = () => {
             >
               M-
             </button>
-          </Tooltip>
-          <Tooltip title="Memory Store" arrow disableInteractive>
+          </MyTooltip>
+          <MyTooltip title="Memory Store" arrow disableInteractive>
             <button
               className="special"
               onClick={() => {
@@ -117,9 +133,9 @@ const App = () => {
             >
               MS
             </button>
-          </Tooltip>
+          </MyTooltip>
 
-          <Tooltip title="Square root" arrow disableInteractive>
+          <MyTooltip title="Square root" arrow disableInteractive>
             <button
               onClick={() => {
                 if (exp.length > 0) {
@@ -132,8 +148,8 @@ const App = () => {
             >
               &radic;
             </button>
-          </Tooltip>
-          <Tooltip title="Square" arrow disableInteractive>
+          </MyTooltip>
+          <MyTooltip title="Square" arrow disableInteractive>
             <button
               onClick={() => {
                 if (exp.length > 0) {
@@ -147,8 +163,8 @@ const App = () => {
               &#119909;
               <sup>2</sup>
             </button>
-          </Tooltip>
-          <Tooltip title="1 upon x" arrow disableInteractive>
+          </MyTooltip>
+          <MyTooltip title="1 upon x" arrow disableInteractive>
             <button
               onClick={() => {
                 if (exp.length > 0) {
@@ -161,8 +177,8 @@ const App = () => {
             >
               1/&#119909;
             </button>
-          </Tooltip>
-          <Tooltip title="Clear" arrow disableInteractive>
+          </MyTooltip>
+          <MyTooltip title="Clear" arrow disableInteractive>
             <button
               className="special"
               onClick={() => setExp("")}
@@ -170,11 +186,11 @@ const App = () => {
             >
               C
             </button>
-          </Tooltip>
+          </MyTooltip>
           <button onClick={clicked}>9</button>
           <button onClick={clicked}>8</button>
           <button onClick={clicked}>7</button>
-          <Tooltip title="BackSpace" arrow disableInteractive>
+          <MyTooltip title="BackSpace" arrow disableInteractive>
             <button
               className="special"
               onClick={() => {
@@ -185,7 +201,7 @@ const App = () => {
             >
               <BackspaceIcon />
             </button>
-          </Tooltip>
+          </MyTooltip>
           <button onClick={clicked}>6</button>
           <button onClick={clicked}>5</button>
           <button onClick={clicked}>4</button>
@@ -241,11 +257,11 @@ const App = () => {
         )}
         {!blockBtn && (
           <>
-            <Tooltip title="History/Memory" arrow disableInteractive>
+            <MyTooltip title="History/Memory" arrow disableInteractive>
               <button id="blockOpener" onClick={() => invertBlock(!blockBtn)}>
                 <ArrowRightIcon id="arrowRight" />
               </button>
-            </Tooltip>
+            </MyTooltip>
           </>
         )}
       </div>
