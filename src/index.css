@@ -119,6 +119,18 @@ code {
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
+  animation: openBlock 1s;
+}
+
+@keyframes openBlock {
+  0% {
+    opacity: 0;
+    left: 50%;
+  }
+  100% {
+    opacity: 1;
+    left: 100%;
+  }
 }
 
 .navBar {
@@ -223,6 +235,18 @@ code {
     left: 0%;
     padding: 0.5vw;
     position: absolute;
+    animation: openBlockBellow 1s;
+  }
+
+  @keyframes openBlockBellow {
+    0% {
+      opacity: 0;
+      top: 50%;
+    }
+    100% {
+      opacity: 1;
+      top: 100%;
+    }
   }
 }
 
